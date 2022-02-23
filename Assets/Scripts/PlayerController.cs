@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject retryButton,gameOverText;
     private Rigidbody playerRb;
     private Animator playerAnim;
     public ParticleSystem explosionParticle, dirtParticle;
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10;
     public float gravityModifier = 2;
     //bool isOnGround = true;
-    public bool gameOver = false;
+    public static bool gameOver = false;
     public bool isDash = false;
     int countJump = 0;
 
@@ -83,7 +84,6 @@ public class PlayerController : MonoBehaviour
         {
             dirtParticle.Play();
             countJump = 0;
-
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
@@ -94,7 +94,8 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetInteger("DeathType_int", 1);
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound, 1.0f);
-
+            retryButton.gameObject.SetActive(true);
+            gameOverText.gameObject.SetActive(true);
         }
     }
 }

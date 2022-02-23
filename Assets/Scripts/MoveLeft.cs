@@ -17,7 +17,7 @@ public class MoveLeft : MonoBehaviour
     {
       
         //spawn when player live
-        if (playerController.gameOver == false)
+        if (PlayerController.gameOver == false)
         {
            
             if (playerController.isDash)
